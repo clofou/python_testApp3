@@ -1,0 +1,13 @@
+canvas:
+        Color:
+            rgba: [1, 1, 1, 1]
+    
+        Rectangle:
+            size: self.size[0], self.size[1]
+            pos: self.pos
+        Color:
+            rgba: [0.6, 0.8, 1, 1]
+    
+        Rectangle:
+            size: self.size[0], (self.size[1] - ((93/100)*self.size[1]))
+            pos: (0, self.pos[1]+((93/100)*self.size[1]))

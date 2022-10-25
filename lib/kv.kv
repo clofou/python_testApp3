@@ -1,0 +1,327 @@
+#: import Label kivy.uix.button.Button
+
+PageManager:
+    LoginPage:
+    RegisterPage:
+    HomePage:
+    UpdatePage:
+
+
+<LoginPage>:
+    mail_input: mail
+    password_input: password
+    name: "Login"
+    text_label: label
+    canvas:
+        Color:
+            rgba: [1, 1, 1, 1]
+    
+        Rectangle:
+            size: self.size[0], self.size[1]
+            pos: self.pos
+        
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Image:
+            source: "../assets/images/login.png"
+            size_hint: 0.5, 0.5
+            allow_stretch: False
+        Label:
+            text: 'LoginPage'
+            font_size: 21
+            size_hint: 0.08, 0.08
+            color: (0.2, 0.2, 0.2, 1)
+        
+    GridLayout:
+        size_hint: 0.8, 0.2
+        pos_hint: {'center_x': 0.45,'center_y': 0.4}
+        cols:2
+        Label:
+            text: "Email: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: mail
+            hint_text:'Entrez vôtre mail'
+            border: (1, 2, 3, 4)
+        Label:
+            text: ""
+        Label:
+            text: ""
+        Label:
+            text: "Password: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: password
+            hint_text:'vôtre password'
+    Button:
+        size_hint: 0.3, 0.05
+        text:"Se Connecter !"
+        pos_hint: {'center_x': 0.5,'center_y': 0.23}
+        background_color: (0.6, 0.8, 1, 1)
+        on_release: root.seConnecter()
+            
+                
+    GridLayout:
+        rows:1
+        size_hint: 0.4, 0.1
+        pos_hint: {'center_x': 0.5,'center_y': 0.16}
+        Label:
+            color: (0.2, 0.2, 0.2, 1)
+            text: "Vous n'avez pas de compte?"
+            size_hint: 0.3, 0.05
+        Button:
+            size_hint: 0.1, 0.001
+            color: (0.1, 0.1, 1, 1)
+            text: "Créer un Compte"
+            background_color: (0, 0, 0, 0)
+            on_release:
+                root.manager.transition.direction = "right"
+                app.root.current = "Register"
+
+    Label:
+        id: label
+        size_hint: 0.3, 0.05
+        pos_hint: {'center_x': 0.5,'center_y': 0.08}
+        
+
+<UpdatePage>:
+    name_input: name
+    surname_input: surname
+    name: "Update"
+    text_label: label
+    canvas:
+        Color:
+            rgba: [1, 1, 1, 1]
+    
+        Rectangle:
+            size: self.size[0], self.size[1]
+            pos: self.pos
+        
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: 'UpdatePage'
+            font_size: 21
+            size_hint: 0.08, 0.08
+            color: (0.2, 0.2, 0.2, 1)
+        
+    GridLayout:
+        size_hint: 0.8, 0.4
+        pos_hint: {'center_x': 0.45,'center_y': 0.6}
+        cols:2
+        Label:
+            text: "Name: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: name
+            hint_text:'Entrez votre nom'
+        Label:
+            text: ""
+        Label:
+            text: ""
+        Label:
+            text: "Surname: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: surname
+            hint_text:'Entrez vôtre prenom'
+    Button:
+        size_hint: 0.3, 0.05
+        text:"Update !"
+        pos_hint: {'center_x': 0.5,'center_y': 0.17}
+        background_color: (0.6, 0.8, 1, 1)
+        on_release: root.updateUser()
+    
+    Label:
+        id: label
+        size_hint: 0.3, 0.05
+        pos_hint: {'center_x': 0.5,'center_y': 0.03} 
+
+<RegisterPage>:
+    mail_input: mail
+    password_input: password
+    name_input: name
+    surname_input: surname
+    note_input: note
+    name: "Register"
+    text_label: label
+    canvas:
+        Color:
+            rgba: [1, 1, 1, 1]
+    
+        Rectangle:
+            size: self.size[0], self.size[1]
+            pos: self.pos
+        
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Image:
+            source: "../assets/images/register.png"
+            size_hint: 0.4, 0.4
+            allow_stretch: False
+        Label:
+            text: 'RegisterPage'
+            font_size: 21
+            size_hint: 0.08, 0.08
+            color: (0.2, 0.2, 0.2, 1)
+        
+    GridLayout:
+        size_hint: 0.8, 0.4
+        pos_hint: {'center_x': 0.45,'center_y': 0.43}
+        cols:2
+        Label:
+            text: "Email: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: mail
+            hint_text:'Entrez vôtre mail'
+            border: (1, 2, 3, 4)
+        Label:
+            text: ""
+        Label:
+            text: ""
+        Label:
+            text: "Password: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: password
+            hint_text:'vôtre password'
+        Label:
+            text: ""
+        Label:
+            text: ""
+        Label:
+            text: "Name: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: name
+            hint_text:'Entrez votre nom'
+        Label:
+            text: ""
+        Label:
+            text: ""
+        Label:
+            text: "Surname: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: surname
+            hint_text:'Entrez vôtre prenom'
+        Label:
+            text: ""
+        Label:
+            text: ""
+        Label:
+            text: "Notes: "
+            color: (0, 0, 0, 1)
+        TextInput:
+            multiline: False
+            id: note
+            hint_text:'Note de Classe'
+    Button:
+        size_hint: 0.3, 0.05
+        text:"Créer Un compte !"
+        pos_hint: {'center_x': 0.5,'center_y': 0.17}
+        background_color: (0.6, 0.8, 1, 1)
+        on_release: root.createUser()
+    GridLayout:
+        rows:1
+        size_hint: 0.4, 0.1
+        pos_hint: {'center_x': 0.5,'center_y': 0.11}
+        Label:
+            color: (0.2, 0.2, 0.2, 1)
+            text: "Vous avez déjà un compte?"
+            size_hint: 0.3, 0.05
+        Button:
+            size_hint: 0.1, 0.0
+            color: (0.1, 0.7, 0.7, 1)
+            text: "Connecter Vous"
+            background_color: (0, 0, 0, 0)
+            on_release:
+                root.manager.transition.direction = "left"
+                app.root.current = "Login"
+
+    Label:
+        id: label
+        size_hint: 0.3, 0.05
+        pos_hint: {'center_x': 0.5,'center_y': 0.03}
+
+<HomePage>:
+    name: name
+    pre: pre
+    on_pre_enter: root.refresh()
+    canvas:
+        Color:
+            rgba: [1, 1, 1, 1]
+    
+        Rectangle:
+            size: self.size[0], self.size[1]
+            pos: self.pos
+        Color:
+            rgba: [0.6, 0.8, 1, 1]
+    
+        Rectangle:
+            size: self.size[0], (self.size[1] - ((93/100)*self.size[1]))
+            pos: (0, self.pos[1]+((93/100)*self.size[1]))
+    
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: 'Current User Information'
+            font_size: 21
+            size_hint: 0.08, 0.08
+            color: (0.2, 0.2, 0.2, 1)
+    GridLayout:
+        cols: 1
+        size_hint: 0.5, 0.3
+        pos_hint: {'center_x': 0.5,'center_y': 0.7}
+        Label:
+            id: name
+            text: "Nom: %s"%root.ab[1]
+            color: (0, 0, 0, 1)
+        Label:
+            id: pre
+            text: "Prenom: %s"%root.ab[2]
+            color: (0, 0, 0, 1)
+        Label:
+            text: "Email: %s"%root.ab[5]
+            color: (0, 0, 0, 1)
+        Label:
+            text: "Note de classe: %s"%root.ab[4]
+            color: (0, 0, 0, 1)
+    GridLayout:
+        rows: 1
+        size_hint: 0.5, 0.1
+        pos_hint: {'center_x': 0.5,'center_y': 0.3}
+        Button:
+            size_hint: 0.3, 0.05
+            text:"Update"
+            pos_hint: {'center_x': 0.5,'center_y': 0.23}
+            background_color: (0.6, 0.8, 1, 1)
+            on_release: root.update()
+
+        Button:
+            size_hint: 0.3, 0.05
+            text:"Log Out"
+            pos_hint: {'center_x': 0.5,'center_y': 0.23}
+            background_color: (0.6, 0.8, 1, 1)
+            on_release: 
+                root.manager.transition.direction = "down"
+                app.root.current = "Login"
+        Button:
+            size_hint: 0.3, 0.05
+            text:"Supprimer User"
+            pos_hint: {'center_x': 0.5,'center_y': 0.23}
+            background_color: (1, 0, 0, 1)
+            on_release: root.suppr()
