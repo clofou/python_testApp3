@@ -5,6 +5,7 @@ PageManager:
     RegisterPage:
     HomePage:
     UpdatePage:
+    SearchPage:
 
 
 <LoginPage>:
@@ -92,6 +93,7 @@ PageManager:
     surname_input: surname
     name: "Update"
     text_label: label
+    on_pre_enter: root.yo()
     canvas:
         Color:
             rgba: [1, 1, 1, 1]
@@ -257,9 +259,12 @@ PageManager:
         pos_hint: {'center_x': 0.5,'center_y': 0.03}
 
 <HomePage>:
-    name: name
+    name: "Home"
+    lname: name
     pre: pre
-    on_pre_enter: root.refresh()
+    email: email
+    note:note
+    on_pre_enter: root.yo()
     canvas:
         Color:
             rgba: [1, 1, 1, 1]
@@ -288,40 +293,54 @@ PageManager:
         pos_hint: {'center_x': 0.5,'center_y': 0.7}
         Label:
             id: name
-            text: "Nom: %s"%root.ab[1]
             color: (0, 0, 0, 1)
         Label:
             id: pre
-            text: "Prenom: %s"%root.ab[2]
             color: (0, 0, 0, 1)
         Label:
-            text: "Email: %s"%root.ab[5]
+            id: email
             color: (0, 0, 0, 1)
         Label:
-            text: "Note de classe: %s"%root.ab[4]
+            id: note
             color: (0, 0, 0, 1)
     GridLayout:
-        rows: 1
+        cols:1
         size_hint: 0.5, 0.1
         pos_hint: {'center_x': 0.5,'center_y': 0.3}
-        Button:
-            size_hint: 0.3, 0.05
-            text:"Update"
-            pos_hint: {'center_x': 0.5,'center_y': 0.23}
-            background_color: (0.6, 0.8, 1, 1)
-            on_release: root.update()
+        GridLayout:
+            rows: 1
+            size_hint: 0.5, 0.1
+            pos_hint: {'center_x': 0.5,'center_y': 0.3}
+            Button:
+                size_hint: 0.3, 0.05
+                text:"Update"
+                pos_hint: {'center_x': 0.5,'center_y': 0.23}
+                background_color: (0.6, 0.8, 1, 1)
+                on_release: root.update()
 
-        Button:
-            size_hint: 0.3, 0.05
-            text:"Log Out"
-            pos_hint: {'center_x': 0.5,'center_y': 0.23}
-            background_color: (0.6, 0.8, 1, 1)
-            on_release: 
-                root.manager.transition.direction = "down"
-                app.root.current = "Login"
-        Button:
-            size_hint: 0.3, 0.05
-            text:"Supprimer User"
-            pos_hint: {'center_x': 0.5,'center_y': 0.23}
-            background_color: (1, 0, 0, 1)
-            on_release: root.suppr()
+            Button:
+                size_hint: 0.3, 0.05
+                text:"Log Out"
+                pos_hint: {'center_x': 0.5,'center_y': 0.23}
+                background_color: (0.6, 0.8, 1, 1)
+                on_release: 
+                    root.manager.transition.direction = "down"
+                    app.root.current = "Login"
+            Button:
+                size_hint: 0.3, 0.05
+                text:"Supprimer User"
+                pos_hint: {'center_x': 0.5,'center_y': 0.23}
+                background_color: (1, 0, 0, 1)
+                on_release: root.suppr()
+
+<SearchPage>:
+    name: "Search"
+    searchName: searchName
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        TextInput:
+            id: searchName
+            multiline: False
+
+        

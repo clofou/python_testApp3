@@ -47,20 +47,22 @@ class MyBdd:
         myDbWriter.execute("SELECT * FROM user")
         userList = myDbWriter.fetchall()
         isResgister = False
-        for user in userList:
-            if (user[5] == email):
-                isResgister = True
-                break
-        if isResgister or self.check(email)==False:
-            return False
-        else:
-            sql = "INSERT INTO user(nom, prenom, age, note, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
-            newUser = (name, surname, age, note, email, password)
-            myDbWriter.execute(sql, newUser)
-            self.bdd.commit()
-            self.bdd.close()
-            self.bdd.close()
-            return True
+        if (email!="" and name!="" and surname!="" and note!="" and password!=""):
+            for user in userList:
+                if (user[5] == email):
+                    isResgister = True
+                    break
+                
+            if isResgister or self.check(email)==False:
+                return False
+            else:
+                sql = "INSERT INTO user(nom, prenom, age, note, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
+                newUser = (name, surname, age, note, email, password)
+                myDbWriter.execute(sql, newUser)
+                self.bdd.commit()
+                self.bdd.close()
+                self.bdd.close()
+                return True
 
     
     def login(self, email, password):
@@ -95,11 +97,12 @@ class MyBdd:
         myDbWriter.execute("SELECT * FROM user")
         userList = myDbWriter.fetchall()
         isUpdate = False
-        for user in userList:
-            if (user[5] == email):
-                myDbWriter.execute(f"UPDATE user SET nom='{name}',prenom='{surname}',age='{age}',note='{note}' WHERE email='{email}'")
-                isUpdate = True
-                break
+        if (email!="" and name!="" and surname!="" and note!=""):
+            for user in userList:
+                if (user[5] == email):
+                    myDbWriter.execute(f"UPDATE user SET nom='{name}',prenom='{surname}',age='{age}',note='{note}' WHERE email='{email}'")
+                    isUpdate = True
+                    break
         self.bdd.close()
         return isUpdate
 
